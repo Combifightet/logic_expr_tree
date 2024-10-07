@@ -24,13 +24,13 @@ x →
         ],
         "Tags": [1,2]
     },
-    ...
+    // ...
 ]
 ```
 
 - [ ] read / write `.sen` _(logic sentence files)_
 
-```txt
+```t
 ["∀x (Dodec(x) → Small(x))","¬∃v Tet(v)"]
 ```
 
@@ -44,58 +44,58 @@ x →
 
 **Arity 1:**
 
-- [xx] Sqr(a)  / Cube(a)                 (**pCube**)
-- [xx] Tri(a)  / Tet(a)                  (**pTet**)
-- [xx] Pent(a) / Dodec(a)                (**pDodec**)
-- [xx] Small(a)                          (**pSmall**)
-- [xx] Medium(a)                         (**pMedium**)
-- [xx] Large(a)                          (**pLarge**)
+- [x] Sqr(a)  / Cube(a)                 (**pCube**)
+- [x] Tri(a)  / Tet(a)                  (**pTet**)
+- [x] Pent(a) / Dodec(a)                (**pDodec**)
+- [x] Small(a)                          (**pSmall**)
+- [x] Medium(a)                         (**pMedium**)
+- [x] Large(a)                          (**pLarge**)
 
 **Arity 2:**
 
-- [xx] Smaller(a, b)                     (**pSmaller**)
-- [xx] Larger(a, b)                      (**pLarger**)
-- [xx] LeftOf(a, b)                      (**pLeftOf**)
-- [xx] RightOf(a, b)                     (**pRightOf**)
-- [xx] AboveOf(a, b)  / BackOf(a, b)     (**pAboveOf**)
-- [xx] BelowOf(a, b)  / FrontOf(a, b)    (**pBelowOf**)
-- [xx] SameSize(a, b)                    (**pSameSize**)
-- [xx] SameShape(a, b)                   (**pSameShape**)
-- [xx] SameRow(a, b)                     (**pSameRow**)
-- [xx] SameCol(a, b)                     (**pSameCol**)
-- [xx] Adjoins(a, b) _(not diagonal)_    (**pAdjoins**)
+- [x] Smaller(a, b)                     (**pSmaller**)
+- [x] Larger(a, b)                      (**pLarger**)
+- [x] LeftOf(a, b)                      (**pLeftOf**)
+- [x] RightOf(a, b)                     (**pRightOf**)
+- [x] AboveOf(a, b)  / BackOf(a, b)     (**pAboveOf**)
+- [x] BelowOf(a, b)  / FrontOf(a, b)    (**pBelowOf**)
+- [x] SameSize(a, b)                    (**pSameSize**)
+- [x] SameShape(a, b)                   (**pSameShape**)
+- [x] SameRow(a, b)                     (**pSameRow**)
+- [x] SameCol(a, b)                     (**pSameCol**)
+- [x] Adjoins(a, b) _(not diagonal)_    (**pAdjoins**)
 
 **Arity 3:**
 
-- [xx] Between(a, b, c)                  (**pBetween**)
+- [x] Between(a, b, c)                  (**pBetween**)
 
 #### Funtion symbols
 
-- [xx] rm(a)                             (**fRm**)
-- [xx] lm(a)                             (**fLm**)
-- [xx] fm(a)                             (**fFm**)
-- [xx] bm(a)                             (**fBm**)
+- [x] rm(a)                             (**fRm**)
+- [x] lm(a)                             (**fLm**)
+- [x] fm(a)                             (**fFm**)
+- [x] bm(a)                             (**fBm**)
 
 #### Operator symbols
 
-- [xx] ∧     logical conjunction         (**opConjunction**)
-- [xx] ∨     logical disjunction         (**opDisjunction**)
-- [xx] ¬     negation                    (**opNegation**)
-- [xx] =     equal                       (**opEqual**)
-- [xx] ≠     not equal                   (**opNotEqual**)
-- [xx] →     material implication        (**opImplication**)
-- [xx] ↔     material equivalence        (**opBiimplication**)
-- [xx] ∀     universal quantification    (**opUniversalQuant**)
-- [xx] ∃     existential quantification  (**opExistentialQuant**)
+- [x] ∧     logical conjunction         (**opConjunction**)
+- [x] ∨     logical disjunction         (**opDisjunction**)
+- [x] ¬     negation                    (**opNegation**)
+- [x] =     equal                       (**opEqual**)
+- [x] ≠     not equal                   (**opNotEqual**)
+- [x] →     material implication        (**opImplication**)
+- [x] ↔     material equivalence        (**opBiimplication**)
+- [x] ∀     universal quantification    (**opUniversalQuant**)
+- [x] ∃     existential quantification  (**opExistentialQuant**)
 
 #### Constant symbols
 
-- [xx] ⊤     tautology                   (**tTautology**)
-- [xx] ⊥     contradiction               (**tContradiction**)
-- [xx] a-f   constants                   (**tConstant**)
-- [xx] u-z   variables                   (**tVariable**)
+- [x] ⊤     tautology                   (**tTautology**)
+- [x] ⊥     contradiction               (**tContradiction**)
+- [x] a-f   constants                   (**tConstant**)
+- [x] u-z   variables                   (**tVariable**)
 
 #### Utility symbols (internal use only)
 
-- [xx] (                                 (**uuBracketOpen**)
-- [xx] )                                 (**uuBracketClose**)
+- [x] (                                 (**uuBracketOpen**)
+- [x] )                                 (**uuBracketClose**)
