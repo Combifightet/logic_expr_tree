@@ -12,18 +12,18 @@ class FolWorld {
 
   List<LogicObj> getWorld() => _objects;
 
-  void rotateCW(double x, double y) {
+  void rotateCCW(double x, double y) {
     assert((2*x).floorToDouble()%2==(2*y).floorToDouble()%2);
     x = (2*x).floorToDouble()/2;
     y = (2*y).floorToDouble()/2;
     // to make sure x & y are both either .0 or .5
     for (var obj in _objects) {
       int newX = (obj._y-y+x).floor();
-      obj._y=-(obj._x+x+y).floor();
+      obj._y=(-obj._x+x+y).floor();
       obj._x=newX;
     }
   }
-  void rotateCCW(double x, double y) {
+  void rotateCW(double x, double y) {
     assert((2*x).floorToDouble()%2==(2*y).floorToDouble()%2);
     x = (2*x).floorToDouble()/2;
     y = (2*y).floorToDouble()/2;
@@ -36,12 +36,10 @@ class FolWorld {
   }
 
   bool move(int startX, int startY, int endX, int endY) {
-    if ((_objects.any((obj) => obj._x==endY&&obj._y==endY)) || !(_objects.any((obj) => obj._x==startX&&obj._y==startY))) {
+    if (_objects.any((obj) => obj._x==endX&&obj._y==endY) || !_objects.any((obj) => obj._x==startX&&obj._y==startY)) {
       return false;
     }
-    LogicObj logicObj = _objects.firstWhere((obj) => obj._x==startX&&obj._y==startY);
-    logicObj._x=endX;
-    logicObj._y=endY;
+    _objects.firstWhere((obj) => obj._x==startX&&obj._y==startY).setPos(endX, endY);
     return true;
   }
 
@@ -82,6 +80,7 @@ class FolWorld {
 
 // ignore: constant_identifier_names
 enum ObjectType {Tet, Cube, Dodec;
+  int sides() => index+3;
   // bool operator >(other) => index > other.index; 
   // bool operator <(other) => index < other.index;
   // bool operator >=(other) => index >= other.index;
