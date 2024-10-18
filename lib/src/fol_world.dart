@@ -105,6 +105,7 @@ class LogicObj {
 
   int getX() => _x;
   int getY() => _y;
+  List<String> getConsts() => _consts;
 
   void addConst(String constant) {
     _consts.add(constant);
