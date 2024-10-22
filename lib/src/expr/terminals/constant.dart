@@ -10,8 +10,8 @@ class Constant extends Terminal {
   String getName() => _name;
 
   @override 
-  LogicObj getValue(FolWorld world, Map<String, LogicObj> variables) {
-    return world.getWorld().firstWhere((obj) => obj.hasConst(_name), orElse:() => throw UnsupportedError('cannot find constant: \'$_name\''));
+  List<LogicObj> getValue(FolWorld world, Map<String, LogicObj> variables) {
+    return [world.getWorld().firstWhere((obj) => obj.hasConst(_name), orElse:() => throw UnsupportedError('cannot find constant: \'$_name\''))];
   }
 
   @override

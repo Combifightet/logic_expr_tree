@@ -9,10 +9,9 @@ class Smaller extends Predicate {
 
   @override 
   bool getValue(FolWorld world, Map<String, LogicObj> variables) {
-   assert(node?.getRight()==null);
+    assert(node?.getRight()==null);
     ExpressionTree left =  node?.getLeft() as ExpressionTree;
-    List tempL = [left.getData()?.getValue(world, variables)];
-    List<LogicObj> obj = tempL.expand((i) => i).toList() as List<LogicObj>;
+    List<LogicObj> obj = left.getData()?.getValue(world, variables);
     assert(obj.length==_airity);
     return obj[0].size<obj[1].size;
   }

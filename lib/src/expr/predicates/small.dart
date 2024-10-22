@@ -11,8 +11,7 @@ class Small extends Predicate {
   bool getValue(FolWorld world, Map<String, LogicObj> variables) {
     assert(node?.getRight()==null);
     ExpressionTree left =  node?.getLeft() as ExpressionTree;
-    List tempL = [left.getData()?.getValue(world, variables)];
-    List<LogicObj> obj = tempL.expand((i) => i).toList() as List<LogicObj>;
+    List<LogicObj> obj = left.getData()?.getValue(world, variables);
     assert(obj.length==_airity);
     return obj[0].size==ObjectSize.Small;
   }

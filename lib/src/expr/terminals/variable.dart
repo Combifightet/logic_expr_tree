@@ -10,9 +10,9 @@ class Variable extends Terminal {
   String getName() => _name;
 
   @override 
-  dynamic getValue(FolWorld world, Map<String, LogicObj> variables) {
+  List<LogicObj> getValue(FolWorld world, Map<String, LogicObj> variables) {
     if (variables.keys.contains(_name)) {
-      return variables[_name];
+      return [variables[_name] as LogicObj];
     }
     throw UnsupportedError('don\'t know value of variable: \'$_name\'');
   }
