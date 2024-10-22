@@ -13,7 +13,7 @@ class BackOf extends Predicate {
     ExpressionTree left =  node?.getLeft() as ExpressionTree;
     List<LogicObj> obj = left.getData()?.getValue(world, variables);
     assert(obj.length==_airity);
-    return obj[0].getY()>obj[1].getY();
+    return obj[0].getY()<obj[1].getY();
   }
 
   @override

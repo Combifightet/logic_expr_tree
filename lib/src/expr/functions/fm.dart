@@ -10,9 +10,9 @@ class Fm extends Functions {
   LogicObj getValue(FolWorld world, Map<String, LogicObj> variables) {
     ExpressionTree left =  node?.getLeft() as ExpressionTree;
     assert(node?.getRight()==null); // unary operation
-    LogicObj frontMost = left.getData()?.getValue(world, variables);
+    LogicObj frontMost = left.getData()?.getValue(world, variables)[0];
     for (LogicObj obj in world.getWorld()) {
-      if (obj.getX()==frontMost.getX() && obj.getY()<frontMost.getY()) {
+      if (obj.getX()==frontMost.getX() && obj.getY()>frontMost.getY()) {
         frontMost = obj;
       }
     }

@@ -10,7 +10,7 @@ class Rm extends Functions {
   LogicObj getValue(FolWorld world, Map<String, LogicObj> variables) {
     ExpressionTree left =  node?.getLeft() as ExpressionTree;
     assert(node?.getRight()==null); // unary operation
-    LogicObj rightMost = left.getData()?.getValue(world, variables);
+    LogicObj rightMost = left.getData()?.getValue(world, variables)[0];
     for (LogicObj obj in world.getWorld()) {
       if (obj.getY()==rightMost.getY() && obj.getX()>rightMost.getX()) {
         rightMost = obj;

@@ -4,10 +4,11 @@ import 'package:logic_expr_tree/logic_expr_tree.dart';
 void main() {
   // TODO: add example main
   List<String> testScentences = [
-    '⊥∨(x∀Cube(x))',
-    'Between(a,b,c)',
-    'SameShape(a,b)',
-    'Cube(a)',
+    'bm(a)',
+    // '⊥∨(x∀Cube(x))',
+    // 'Between(a,b,c)',
+    // 'SameShape(a,b)',
+    // 'Cube(a)',
   ];
 
   FolWorld world = FolWorld();
@@ -30,15 +31,18 @@ void main() {
     ['c']
   );
 
-  print('input = \'${testScentences[1]}\'');
+  for (String input in testScentences) {
+    print('------------------------------------------------------------------');
+    print('input = \'$input\'');
 
-  ExpressionParser p = ExpressionParser();
-  p.setVerbose(true);
-  ExpressionTree tree = p.parse(testScentences[1]);
+    ExpressionParser p = ExpressionParser();
+    p.setVerbose(true);
+    ExpressionTree tree = p.parse(input);
 
-  print('output = \'$tree\'');
-  print(tree.toTikZ());
+    print('output = \'$tree\'');
+    print(tree.toTikZ());
 
-  print(tree.getValue(world, {}));
+    print(tree.getValue(world, {}));
+  }
 
 }
