@@ -202,7 +202,6 @@ class ExpressionParser {
     } else if (_lookahead()==Type.tTautology) {
       tree = ExpressionTree(Tautology());
     } else if (_lookahead()==Type.tContradiction) {
-      print('here');
       tree = ExpressionTree(Contradiction());
     }
     else if (_lookahead().isPredicate()) {
@@ -239,7 +238,6 @@ class ExpressionParser {
     }
 
     _nextToken();
-    print('here2');
     return tree;
   }
 
