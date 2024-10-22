@@ -7,7 +7,7 @@ class Lm extends Functions {
   Lm();
 
   @override 
-  LogicObj getValue(FolWorld world, Map<String, LogicObj> variables) {
+  List<LogicObj> getValue(FolWorld world, Map<String, LogicObj> variables) {
     ExpressionTree left =  node?.getLeft() as ExpressionTree;
     assert(node?.getRight()==null); // unary operation
     LogicObj leftMost = left.getData()?.getValue(world, variables)[0];
@@ -16,7 +16,7 @@ class Lm extends Functions {
         leftMost = obj;
       }
     }
-    return leftMost;
+    return [leftMost];
   }
 
   @override

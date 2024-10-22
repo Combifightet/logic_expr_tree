@@ -5,6 +5,7 @@ void main() {
   // TODO: add example main
   List<String> testScentences = [
     'bm(a)',
+    'a',
     // '⊥∨(x∀Cube(x))',
     // 'Between(a,b,c)',
     // 'SameShape(a,b)',
