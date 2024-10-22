@@ -205,11 +205,11 @@ class ExpressionParser {
       tree = ExpressionTree(Contradiction());
     }
     else if (_lookahead().isPredicate()) {
-      Predicate p = predicates[_lookahead()]!;
+      AtomicExpression p = predicates[_lookahead()]!.clone();
       _nextToken();
       return ExpressionTree(p, _terminal(level+1));
     } else if (_lookahead().isFunction()) {
-      Functions f = functions[_lookahead()]!;
+      AtomicExpression f = functions[_lookahead()]!.clone();
       _nextToken();
       return ExpressionTree(f, _terminal(level+1));
     }
