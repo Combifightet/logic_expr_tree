@@ -231,7 +231,8 @@ class ExpressionParser {
       _expect(Type.uBracketClose,"closing parenthesis )");
     }
     else if (_lookahead()==Type.opNegation) {
-      tree = ExpressionTree(Negation(), _terminal(level+1));
+      _nextToken();
+      tree = ExpressionTree(Negation(), _expression(level+1));
     }
     else {
       throw ArgumentError(_errorNear());
@@ -247,7 +248,7 @@ class ExpressionParser {
 
   void main() {
     String input = '⊥∨(∀xCube(x))';
-    input = '⊥';
+    input = '¬⊥';
     print('input = \'$input\'');
 
     ExpressionParser p = ExpressionParser();
