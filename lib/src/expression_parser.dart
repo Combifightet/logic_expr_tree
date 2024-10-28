@@ -67,13 +67,13 @@ class ExpressionParser {
     Queue<ExpressionTree> expr = Queue<ExpressionTree>();
     Queue<Type>           op   = Queue<Type>();
 
-    ExpressionTree tree=_comparision(level+1);
+    ExpressionTree tree=_implication(level+1);
 
     // parse iteratively
     while (_lookahead()==Type.opConjunction || _lookahead()==Type.opDisjunction) {
       op.add(_lookahead());
       _nextToken();
-      expr.add(_comparision(level+1));
+      expr.add(_implication(level+1));
     }
 
     // setup tree
@@ -87,6 +87,37 @@ class ExpressionParser {
     return tree;
   }
 
+  /// parse implication<p>
+  /// <pre><code>implication ::= comma |
+  ///     implication '→' comma | implication '↔' comma
+  /// </code></pre>
+  ExpressionTree _implication(int level) {
+    _verbose(level,"<implication>");
+
+    // temporary storage
+    Queue<ExpressionTree> expr = Queue<ExpressionTree>();
+    Queue<Type>           op   = Queue<Type>();
+
+    ExpressionTree tree=_comparision(level+1);
+
+    // parse iteratively
+    while (_lookahead()==Type.opImplication || _lookahead()==Type.opBiimplication) {
+      op.add(_lookahead());
+      _nextToken();
+      expr.add(_comparision(level+1));
+    }
+
+    // setup tree
+    while (op.isNotEmpty) {
+      if (op.removeFirst()==Type.opImplication) {
+        tree = ExpressionTree(Implication(),tree,expr.removeFirst());
+      } else {
+        tree = ExpressionTree(Biimplication(),tree,expr.removeFirst());
+      }
+    }
+    return tree;
+  }
+
   /// parse comparision<p>
   /// <pre><code>comparision ::= implication |
   ///     comparision '=' implication | comparision '≠' implication
@@ -94,7 +125,7 @@ class ExpressionParser {
   ExpressionTree _comparision(int level) {
     _verbose(level,"<comparision>");
 
-    ExpressionTree left=_implication(level+1);
+    ExpressionTree left=_comma(level+1);
 
     if (_lookahead()==Type.opEqual) {
       _nextToken();
@@ -109,68 +140,6 @@ class ExpressionParser {
 
     return left;
   }
-
-  /// parse implication<p>
-  /// <pre><code>implication ::= comma |
-  ///     implication '→' comma | implication '↔' comma
-  /// </code></pre>
-  ExpressionTree _implication(int level) {
-    _verbose(level,"<implication>");
-
-    // temporary storage
-    Queue<ExpressionTree> expr = Queue<ExpressionTree>();
-    Queue<Type>           op   = Queue<Type>();
-
-    ExpressionTree tree=_comma(level+1);
-
-    // parse iteratively
-    while (_lookahead()==Type.opImplication || _lookahead()==Type.opBiimplication) {
-      op.add(_lookahead());
-      _nextToken();
-      expr.add(_comma(level+1));
-    }
-
-    // setup tree
-    while (op.isNotEmpty) {
-      if (op.removeFirst()==Type.opImplication) {
-        tree = ExpressionTree(Implication(),tree,expr.removeFirst());
-      } else {
-        tree = ExpressionTree(Biimplication(),tree,expr.removeFirst());
-      }
-    }
-    return tree;
-  }
-
-  // /// parse quantor<p>
-  // /// <pre><code>quantor ::= terminal |
-  // ///     terminal '∀' expression | terminal '∃' expression
-  // /// </code></pre>
-  // ExpressionTree _quantor(int level) {
-  //   _verbose(level,"<quantor>");
-
-  //   // temporary storage
-  //   Queue<ExpressionTree> expr = Queue<ExpressionTree>();
-  //   Queue<Type>           op   = Queue<Type>();
-
-  //   ExpressionTree tree=_comma(level+1);
-
-  //   // parse iteratively
-  //   while (_lookahead()==Type.opUniversalQuant || _lookahead()==Type.opExistentialQuant) {
-  //     op.add(_lookahead());
-  //     _nextToken();
-  //     expr.add(_expression(level+1));
-  //   }
-
-  //   // setup tree
-  //   while (op.isNotEmpty) {
-  //     if (op.removeFirst()==Type.opUniversalQuant) {
-  //       tree = ExpressionTree(UniversalQuant(),tree,expr.removeFirst());
-  //     } else {
-  //       tree = ExpressionTree(ExistentialQuant(),tree,expr.removeFirst());
-  //     }
-  //   }
-  //   return tree;
-  // }
 
   ExpressionTree _comma(int level) {
     _verbose(level, '<comma>');
@@ -231,7 +200,7 @@ class ExpressionParser {
     }
     else if (_lookahead()==Type.opNegation) {
       _nextToken();
-      tree = ExpressionTree(Negation(), _expression(level+1));
+      return ExpressionTree(Negation(), _expression(level+1));
     }
     else {
       throw ArgumentError(_errorNear());
