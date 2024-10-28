@@ -11,6 +11,14 @@ class FolWorld {
   }
 
   List<LogicObj> getWorld() => _objects;
+  
+  List<String> getConsts()  {
+    List<String> consts = [];
+    for (LogicObj obj in _objects) {
+      consts.addAll(obj._consts);
+    }
+    return consts;
+  }
 
   void rotateCCW(double x, double y) {
     assert((2*x).floorToDouble()%2==(2*y).floorToDouble()%2);
