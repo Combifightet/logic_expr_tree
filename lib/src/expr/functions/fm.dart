@@ -12,7 +12,7 @@ class Fm extends Functions {
     assert(node?.getRight()==null); // unary operation
     LogicObj frontMost = left.getData()?.getValue(world, variables)[0];
     for (LogicObj obj in world.getWorld()) {
-      if (obj.getX()==frontMost.getX() && obj.getY()>frontMost.getY()) {
+      if (obj.getX()==frontMost.getX() && obj.getY()<frontMost.getY()) {
         frontMost = obj;
       }
     }

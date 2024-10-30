@@ -20,7 +20,7 @@ class FolWorld {
     return consts;
   }
 
-  void rotateCCW(double x, double y) {
+  void rotateCW(double x, double y) {
     assert((2*x).floorToDouble()%2==(2*y).floorToDouble()%2);
     x = (2*x).floorToDouble()/2;
     y = (2*y).floorToDouble()/2;
@@ -31,7 +31,7 @@ class FolWorld {
       obj._x=newX;
     }
   }
-  void rotateCW(double x, double y) {
+  void rotateCCW(double x, double y) {
     assert((2*x).floorToDouble()%2==(2*y).floorToDouble()%2);
     x = (2*x).floorToDouble()/2;
     y = (2*y).floorToDouble()/2;

@@ -12,7 +12,7 @@ class Bm extends Functions {
     assert(node?.getRight()==null); // unary operation
     LogicObj backMost = left.getData()?.getValue(world, variables)[0];
     for (LogicObj obj in world.getWorld()) {
-      if (obj.getX()==backMost.getX() && obj.getY()<backMost.getY()) {
+      if (obj.getX()==backMost.getX() && obj.getY()>backMost.getY()) {
         backMost = obj;
       }
     }

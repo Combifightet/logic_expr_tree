@@ -13,7 +13,7 @@ class Adjoins extends Predicate {
     ExpressionTree left =  node?.getLeft() as ExpressionTree;
     List<LogicObj> obj = left.getData()?.getValue(world, variables);
     assert(obj.length==_airity);
-    return (obj[0].getX()-obj[1].getX()).abs()==1 || (obj[0].getY()-obj[1].getY()).abs()==1;
+    return ((obj[0].getX()-obj[1].getX()).abs()==1 && obj[0].getY()==obj[1].getY()) || ((obj[0].getY()-obj[1].getY()).abs()==1 && obj[0].getX()==obj[1].getX());
   }
 
   @override

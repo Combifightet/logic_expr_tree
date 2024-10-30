@@ -21,14 +21,14 @@ class Tokenizer {
     Type.fFm: RegExp(r'fm'),
     Type.fBm: RegExp(r'bm'),
     
-    Type.pCube: RegExp(r'Cube'),      // Arity 1
+    Type.pCube: RegExp(r'Cube'),
     Type.pTet: RegExp(r'Tet'),
     Type.pDodec: RegExp(r'Dodec'),
+    Type.pSmaller: RegExp(r'Smaller'),
     Type.pSmall: RegExp(r'Small'),
     Type.pMedium: RegExp(r'Medium'),
-    Type.pLarge: RegExp(r'Large'),
-    Type.pSmaller: RegExp(r'Smaller'),   // Arity 2
     Type.pLarger: RegExp(r'Larger'),
+    Type.pLarge: RegExp(r'Large'),
     Type.pLeftOf: RegExp(r'LeftOf'),
     Type.pRightOf: RegExp(r'RightOf'),
     Type.pBackOf: RegExp(r'BackOf'),
@@ -38,7 +38,7 @@ class Tokenizer {
     Type.pSameRow: RegExp(r'SameRow'),
     Type.pSameCol: RegExp(r'SameCol'),
     Type.pAdjoins: RegExp(r'Adjoins'),
-    Type.pBetween: RegExp(r'Between'),   // Arity 3
+    Type.pBetween: RegExp(r'Between'),
 
     Type.tConstant: RegExp(r'[a-m]'),
     Type.tVariable: RegExp(r'[n-z]'),
