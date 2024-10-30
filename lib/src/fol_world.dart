@@ -141,7 +141,6 @@ class LogicObj {
       if (i<_consts.length-1) constsString+=',';
     }
     // TODO: what the hell are Id and UniverseKey
-    return '{"Id":-1,"UniverseKey":"","Consts":[$constsString],"Predicates":["${type.toString().split('.').last}","$size"],"Tags":[$_x,$_y]}';
-    //      {"Id":-1,"UniverseKey":"","Consts":[],"Predicates":["Cube","Small"],"Tags":[3,3]}
+    return '{"Id":-1,"UniverseKey":"","Consts":[$constsString],"Predicates":["${type.toString().split('.').last}","${size.toString().split('.').last}"],"Tags":[$_x,$_y]}';
   }
 }
