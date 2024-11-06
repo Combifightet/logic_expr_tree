@@ -72,17 +72,41 @@ class FolWorld {
   }
 
   // TODO: implement toPL1
-  String toPL1() {
+  String toPL1(List<String> sentences) {
     throw UnimplementedError("need to implement / understand to PL1");
     // ---Universe---
-    // Universe |-> {u0,u1}
+    // Universe |-> {u0,u1,u2}            // sorted numerically same as in objects list inside FolWorld (based on creation order)
     // ---Constants---
-    // n0    |-> u0
-    // n1    |-> u1
+    // a     |-> u2                       // sorted alphabetically
+    // b     |-> u0
     // ---Predicates---
-    // Cube       |-> {u0}
-    // Dodec      |-> {u1}
+    // Tet        |-> {u0}                // sorted alphabetically
+    // Cube       |-> {u1,u2}
     // ---Functions---
+    // fm         |-> {u0 |->u0,          // sorted alphabetically
+    //                 u1 |->u1,
+    //                 u2 |->u1}
+    String result = '---Universe---\nUniverse |-> {'
+    print(objects)
+    for (int i=0; i<_objects.length; i++) {
+      result+='u$i' + (i<_objects.length-1?',':'')
+    }
+    result += '}\n---Constants---';
+    List<String> consts = [];
+    for (int i=0; i<_objects.length; i++) {
+      for (String chr in _objects[i].getConsts()) {
+        consts.add('${chr.padRight(6)}|-> u$i')
+      }
+    }
+    consts.sort();
+    for (String str in consts) {
+      result += '\n$str';
+    }
+    result += '---Predicates---';
+    // TODO: implement
+    result += '---Functions---';
+    // TODO: implement
+    return result
   }
 }
 
