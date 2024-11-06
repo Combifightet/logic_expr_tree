@@ -73,7 +73,7 @@ class FolWorld {
 
   // TODO: implement toPL1
   String toPL1(List<String> sentences) {
-    throw UnimplementedError("need to implement / understand to PL1");
+    // throw UnimplementedError("need to implement");
     // ---Universe---
     // Universe |-> {u0,u1,u2}            // sorted numerically same as in objects list inside FolWorld (based on creation order)
     // ---Constants---
@@ -86,16 +86,15 @@ class FolWorld {
     // fm         |-> {u0 |->u0,          // sorted alphabetically
     //                 u1 |->u1,
     //                 u2 |->u1}
-    String result = '---Universe---\nUniverse |-> {'
-    print(objects)
+    String result = '---Universe---\nUniverse |-> {';
     for (int i=0; i<_objects.length; i++) {
-      result+='u$i' + (i<_objects.length-1?',':'')
+      result+='u$i${i<_objects.length-1?',':''}';
     }
     result += '}\n---Constants---';
     List<String> consts = [];
     for (int i=0; i<_objects.length; i++) {
       for (String chr in _objects[i].getConsts()) {
-        consts.add('${chr.padRight(6)}|-> u$i')
+        consts.add('${chr.padRight(6)}|-> u$i');
       }
     }
     consts.sort();
@@ -106,7 +105,7 @@ class FolWorld {
     // TODO: implement
     result += '---Functions---';
     // TODO: implement
-    return result
+    return result;
   }
 }
 
