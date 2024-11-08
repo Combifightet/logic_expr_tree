@@ -22,4 +22,15 @@ class Dodec extends Predicate {
   Dodec clone() => Dodec();
   @override
   String toString() => 'Dodec';
+
+  @override
+  String all(List<LogicObj> objects) {
+    String result = '${toString().padRight(10)} |-> {';
+    for (int i=0; i<objects.length; i++) {
+      if (objects[0].type==ObjectType.Dodec) {
+        result += '${result.length<=16?'':','}u$i';
+      }
+    }
+    return '$result}\n';
+  }
 }

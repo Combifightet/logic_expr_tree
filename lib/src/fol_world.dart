@@ -139,9 +139,13 @@ class FolWorld {
       result += '$str\n';
     }
     result += '---Predicates---\n';
-    // TODO: implement
+    for (RegExp pattern in predicatePatterns.values) {
+      if (sentence.contains(pattern)) {
+        Predicate pred = predicatePatterns.keys.firstWhere((p) => predicatePatterns[p]==pattern) as Predicate;
+        result += pred.all(_objects);
+      }
+    }
     result += '---Functions---\n';
-    // TODO: implement
     for (RegExp pattern in functionPatterns.values) {
       if (sentence.contains(pattern)) {
         Functions func = functionPatterns.keys.firstWhere((p) => functionPatterns[p]==pattern) as Functions;

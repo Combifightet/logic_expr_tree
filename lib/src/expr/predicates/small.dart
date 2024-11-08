@@ -22,4 +22,15 @@ class Small extends Predicate {
   Small clone() => Small();
   @override
   String toString() => 'Small';
+
+  @override
+  String all(List<LogicObj> objects) {
+    String result = '${toString().padRight(10)} |-> {';
+    for (int i=0; i<objects.length; i++) {
+      if (objects[0].size==ObjectSize.Small) {
+        result += '${result.length<=16?'':','}u$i';
+      }
+    }
+    return '$result}\n';
+  }
 }

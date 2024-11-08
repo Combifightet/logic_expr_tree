@@ -30,13 +30,13 @@ class Fm extends Functions {
   String all(List<LogicObj> objects) {
     String result = '${toString().padRight(10)} |-> {';
     for (int i=0; i<objects.length; i++) {
-      LogicObj rightMost = objects[i];
+      LogicObj frontMost = objects[i];
       for (LogicObj obj in objects) {
-        if (obj.getY()==rightMost.getY() && obj.getX()>rightMost.getX()) {
-          rightMost = obj;
+        if (obj.getX()==frontMost.getX() && obj.getY()<frontMost.getY()) {
+          frontMost = obj;
         }
       }
-      result += 'u$i |->u${objects.indexOf(rightMost)}';
+      result += 'u$i |->u${objects.indexOf(frontMost)}';
       if (i<objects.length-1) {
         result += ',\n${' '*16}';
       }

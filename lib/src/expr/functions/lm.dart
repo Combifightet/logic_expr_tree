@@ -30,13 +30,13 @@ class Lm extends Functions {
   String all(List<LogicObj> objects) {
     String result = '${toString().padRight(10)} |-> {';
     for (int i=0; i<objects.length; i++) {
-      LogicObj rightMost = objects[i];
+      LogicObj leftMost = objects[i];
       for (LogicObj obj in objects) {
-        if (obj.getY()==rightMost.getY() && obj.getX()>rightMost.getX()) {
-          rightMost = obj;
+        if (obj.getY()==leftMost.getY() && obj.getX()<leftMost.getX()) {
+          leftMost = obj;
         }
       }
-      result += 'u$i |->u${objects.indexOf(rightMost)}';
+      result += 'u$i |->u${objects.indexOf(leftMost)}';
       if (i<objects.length-1) {
         result += ',\n${' '*16}';
       }

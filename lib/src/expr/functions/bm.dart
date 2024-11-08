@@ -30,13 +30,13 @@ class Bm extends Functions {
   String all(List<LogicObj> objects) {
     String result = '${toString().padRight(10)} |-> {';
     for (int i=0; i<objects.length; i++) {
-      LogicObj rightMost = objects[i];
+      LogicObj backMost = objects[i];
       for (LogicObj obj in objects) {
-        if (obj.getY()==rightMost.getY() && obj.getX()>rightMost.getX()) {
-          rightMost = obj;
+        if (obj.getX()==backMost.getX() && obj.getY()>backMost.getY()) {
+          backMost = obj;
         }
       }
-      result += 'u$i |->u${objects.indexOf(rightMost)}';
+      result += 'u$i |->u${objects.indexOf(backMost)}';
       if (i<objects.length-1) {
         result += ',\n${' '*16}';
       }
