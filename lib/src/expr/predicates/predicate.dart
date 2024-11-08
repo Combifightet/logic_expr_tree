@@ -1,3 +1,4 @@
+// import '../../fol_world.dart';
 import '../atomic_expression.dart';
 
 import 'tet.dart';          // 1
@@ -62,4 +63,6 @@ Map<Type, Predicate> predicates = {
 abstract class Predicate extends AtomicExpression {
   // ignore: unused_field
   late final int _airity;
+  // TODO: not yet implementted
+  // String all(List<LogicObj> objects);
 }

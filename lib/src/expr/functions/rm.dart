@@ -25,4 +25,22 @@ class Rm extends Functions {
   Rm clone() => Rm();
   @override
   String toString() => 'rm';
+  
+  @override
+  String all(List<LogicObj> objects) {
+    String result = '${toString().padRight(10)} |-> {';
+    for (int i=0; i<objects.length; i++) {
+      LogicObj rightMost = objects[i];
+      for (LogicObj obj in objects) {
+        if (obj.getY()==rightMost.getY() && obj.getX()>rightMost.getX()) {
+          rightMost = obj;
+        }
+      }
+      result += 'u$i |->u${objects.indexOf(rightMost)}';
+      if (i<objects.length-1) {
+        result += ',\n${' '*16}';
+      }
+    }
+    return '$result}\n';
+  }
 }

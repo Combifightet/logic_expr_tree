@@ -1,3 +1,4 @@
+import '../../fol_world.dart';
 import '../atomic_expression.dart';
 
 import 'lm.dart';
@@ -17,4 +18,6 @@ Map<Type, Functions> functions = {
   Type.fFm: Fm(),
 };
 
-abstract class Functions extends AtomicExpression {}
+abstract class Functions extends AtomicExpression {
+  String all(List<LogicObj> objects);
+}
