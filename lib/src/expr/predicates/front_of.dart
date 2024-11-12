@@ -22,4 +22,17 @@ class FrontOf extends Predicate {
   FrontOf clone() => FrontOf();
   @override
   String toString() => 'FrontOf';
+
+  @override
+  String all(List<LogicObj> objects) {
+    String result = '${toString().padRight(10)} |-> {';
+    for (int i=0; i<objects.length; i++) {
+      for (int j=0; j<objects.length; j++) {
+        if (objects[i].getY()<objects[j].getY()) {
+          result += '${result.length<=16?'':','}(u$i,u$j)';
+        }
+      }
+    }
+    return '$result}\n';
+  }
 }

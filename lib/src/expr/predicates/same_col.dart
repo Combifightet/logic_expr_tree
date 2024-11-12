@@ -22,4 +22,17 @@ class SameCol extends Predicate {
   SameCol clone() => SameCol();
   @override
   String toString() => 'SameCol';
+
+  @override
+  String all(List<LogicObj> objects) {
+    String result = '${toString().padRight(10)} |-> {';
+    for (int i=0; i<objects.length; i++) {
+      for (int j=i; j<objects.length; j++) {
+        if (objects[i].getX()==objects[j].getX()) {
+          result += '${result.length<=16?'':','}(u$i,u$j)';
+        }
+      }
+    }
+    return '$result}\n';
+  }
 }

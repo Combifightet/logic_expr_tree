@@ -27,7 +27,7 @@ class Large extends Predicate {
   String all(List<LogicObj> objects) {
     String result = '${toString().padRight(10)} |-> {';
     for (int i=0; i<objects.length; i++) {
-      if (objects[0].size==ObjectSize.Large) {
+      if (objects[i].size==ObjectSize.Large) {
         result += '${result.length<=16?'':','}u$i';
       }
     }

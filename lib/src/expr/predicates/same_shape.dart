@@ -22,4 +22,17 @@ class SameShape extends Predicate {
   SameShape clone() => SameShape();
   @override
   String toString() => 'SameShape';
+
+  @override
+  String all(List<LogicObj> objects) {
+    String result = '${toString().padRight(10)} |-> {';
+    for (int i=0; i<objects.length; i++) {
+      for (int j=i; j<objects.length; j++) {
+        if (objects[i].type==objects[j].type) {
+          result += '${result.length<=16?'':','}(u$i,u$j)';
+        }
+      }
+    }
+    return '$result}\n';
+  }
 }

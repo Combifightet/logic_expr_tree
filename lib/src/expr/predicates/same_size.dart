@@ -22,4 +22,17 @@ class SameSize extends Predicate {
   SameSize clone() => SameSize();
   @override
   String toString() => 'SameSize';
+
+  @override
+  String all(List<LogicObj> objects) {
+    String result = '${toString().padRight(10)} |-> {';
+    for (int i=0; i<objects.length; i++) {
+      for (int j=i; j<objects.length; j++) {
+        if (objects[i].size==objects[j].size) {
+          result += '${result.length<=16?'':','}(u$i,u$j)';
+        }
+      }
+    }
+    return '$result}\n';
+  }
 }
