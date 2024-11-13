@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import '../atomic_expression.dart';
 import '../expression_tree.dart';
 import '../../fol_world.dart';
@@ -13,11 +15,15 @@ class Between extends Predicate {
     ExpressionTree left =  node?.getLeft() as ExpressionTree;
     List<LogicObj> obj = left.getData()?.getValue(world, variables);
     assert(obj.length==_airity);
-    return (obj[0].getY()==obj[1].getY()&&obj[0].getY()==obj[2].getY()&&(obj[0].getX()-obj[1].getX())*(obj[2].getX()-obj[0].getX())>0)
+    return (obj[0]!=obj[1]&&obj[0]!=obj[2])
+        &&((obj[0].getY()==obj[1].getY()&&obj[0].getY()==obj[2].getY()&&(obj[0].getX()-obj[1].getX())*(obj[2].getX()-obj[0].getX())>0)
         || (obj[0].getX()==obj[1].getX()&&obj[0].getX()==obj[2].getX()&&(obj[0].getY()-obj[1].getY())*(obj[2].getY()-obj[0].getY())>0)
-        || (obj[0].getY()-obj[1].getY()/obj[0].getX()-obj[1].getX()==obj[2].getY()-obj[0].getY()/obj[2].getX()-obj[0].getX()
-            && obj[0].getY()-obj[1].getY()==obj[0].getX()-obj[1].getX());       // to only allow 45° diagonals
+        || ((obj[0].getX()-obj[1].getX())*(obj[2].getX()-obj[0].getX())+(obj[0].getY()-obj[1].getY())*(obj[2].getY()-obj[0].getY())==sqrt((pow(obj[0].getX()-obj[1].getX(), 2)+pow(obj[0].getY()-obj[1].getY(), 2))*(pow(obj[2].getX()-obj[0].getX(), 2)+pow(obj[2].getY()-obj[0].getY(), 2)))
+          && obj[0].getY()-obj[1].getY()==obj[0].getX()-obj[1].getX()));       // to only allow 45° diagonals
   }
+
+
+
 
   @override
   Type getType() => Type.pBetween;
@@ -30,12 +36,13 @@ class Between extends Predicate {
   String all(List<LogicObj> objects) {
     String result = '${toString().padRight(10)} |-> {';
     for (int i=0; i<objects.length; i++) {
-      for (int j=i; j<objects.length; j++) {
+      for (int j=0; j<objects.length; j++) {
         for (int k=0; k<objects.length; k++) {
-          if ((objects[i].getY()==objects[j].getY()&&objects[i].getY()==objects[k].getY()&&(objects[i].getX()-objects[j].getX())*(objects[k].getX()-objects[i].getX())>0)
+          if ((objects[i]!=objects[j]&&objects[i]!=objects[k])
+          && ((objects[i].getY()==objects[j].getY()&&objects[i].getY()==objects[k].getY()&&(objects[i].getX()-objects[j].getX())*(objects[k].getX()-objects[i].getX())>0)
            || (objects[i].getX()==objects[j].getX()&&objects[i].getX()==objects[k].getX()&&(objects[i].getY()-objects[j].getY())*(objects[k].getY()-objects[i].getY())>0)
-           || (objects[i].getY()-objects[j].getY()/objects[i].getX()-objects[j].getX()==objects[k].getY()-objects[i].getY()/objects[k].getX()-objects[i].getX()
-               && objects[i].getY()-objects[j].getY()==objects[i].getX()-objects[j].getX())) {       // to only allow 45° diagonals
+           || ((objects[i].getX()-objects[j].getX())*(objects[k].getX()-objects[i].getX())+(objects[i].getY()-objects[j].getY())*(objects[k].getY()-objects[i].getY())==sqrt((pow(objects[i].getX()-objects[j].getX(), 2)+pow(objects[i].getY()-objects[j].getY(), 2))*(pow(objects[k].getX()-objects[i].getX(), 2)+pow(objects[k].getY()-objects[i].getY(), 2)))
+            && objects[i].getY()-objects[j].getY()==objects[i].getX()-objects[j].getX()))) {       // to only allow 45° diagonals
             result += '${result.length<=16?'':','}(u$i,u$j,u$k)';
           }
         }
