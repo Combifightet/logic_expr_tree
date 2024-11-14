@@ -74,30 +74,30 @@ class FolWorld {
   }
 
   final Map<AtomicExpression, RegExp> functionPatterns = {
-    Bm(): RegExp(r'bm\('),
     Fm(): RegExp(r'fm\('),
-    Lm(): RegExp(r'lm\('),
+    Bm(): RegExp(r'bm\('),
     Rm(): RegExp(r'rm\('),
+    Lm(): RegExp(r'lm\('),
   };
   final Map<AtomicExpression, RegExp> predicatePatterns = {
-    Adjoins(): RegExp(r'Adjoins\('),
-    BackOf(): RegExp(r'BackOf\('),
-    Between(): RegExp(r'Between\('),
+    Tet(): RegExp(r'Tet\('),
     Cube(): RegExp(r'Cube\('),
     Dodec(): RegExp(r'Dodec\('),
-    FrontOf(): RegExp(r'FrontOf\('),
+    Small(): RegExp(r'Small\('),
+    Medium(): RegExp(r'Medium\('),
     Large(): RegExp(r'Large\('),
+    Adjoins(): RegExp(r'Adjoins\('),
+    BackOf(): RegExp(r'BackOf\('),
+    FrontOf(): RegExp(r'FrontOf\('),
     Larger(): RegExp(r'Larger\('),
     LeftOf(): RegExp(r'LeftOf\('),
-    Medium(): RegExp(r'Medium\('),
     RightOf(): RegExp(r'RightOf\('),
-    Small(): RegExp(r'Small\('),
-    Smaller(): RegExp(r'Smaller\('),
     SameCol(): RegExp(r'SameCol\('),
     SameRow(): RegExp(r'SameRow\('),
     SameShape(): RegExp(r'SameShape\('),
     SameSize(): RegExp(r'SameSize\('),
-    Tet(): RegExp(r'Tet\('),
+    Smaller(): RegExp(r'Smaller\('),
+    Between(): RegExp(r'Between\('),
   };
 
   // TODO: implement toPL1
@@ -110,7 +110,6 @@ class FolWorld {
       sentence += '#${sentences[i]}';
     }
     sentence = sentence.replaceAll(' ', '');
-    // throw UnimplementedError("need to implement");
     // ---Universe---
     // Universe |-> {u0,u1,u2}            // sorted numerically same as in objects list inside FolWorld (based on creation order)
     // ---Constants---
