@@ -14,5 +14,4 @@ class Contradiction extends Terminal {
   Contradiction clone() => Contradiction();
   @override
   String toString() => '⊥';
-  }
-  
+}

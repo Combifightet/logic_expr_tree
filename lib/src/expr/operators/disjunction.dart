@@ -19,4 +19,4 @@ class Disjunction extends Operator {
   Disjunction clone() => Disjunction();
   @override
   String toString() => '∨';
-  }
+}

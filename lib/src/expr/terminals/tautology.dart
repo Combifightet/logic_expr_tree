@@ -14,5 +14,4 @@ class Tautology extends Terminal {
   Tautology clone() => Tautology();
   @override
   String toString() => '⊤';
-  }
-  
+}

@@ -1,4 +1,7 @@
-import 'package:logic_expr_tree/logic_expr_tree.dart';
+
+import 'expr/atomic_expression.dart';
+import 'expr/functions/functions.dart';
+import 'expr/predicates/predicate.dart';
 
 class FolWorld {
   List<LogicObj> _objects = [];
@@ -100,7 +103,6 @@ class FolWorld {
     Between(): RegExp(r'Between\('),
   };
 
-  // TODO: implement toPL1
   String toPL1(List<String> sentences) {
     String sentence = '';
     if (sentences.isNotEmpty) {
@@ -155,20 +157,12 @@ class FolWorld {
   }
 }
 
-// ignore: constant_identifier_names
 enum ObjectType {Tet, Cube, Dodec;
   int sides() => index+3;
-  // bool operator >(other) => index > other.index; 
-  // bool operator <(other) => index < other.index;
-  // bool operator >=(other) => index >= other.index;
-  // bool operator <=(other) => index <= other.index;
 }
-// ignore: constant_identifier_names
 enum ObjectSize {Small, Medium, Large;
   bool operator >(other) => index > other.index; 
   bool operator <(other) => index < other.index;
-  // bool operator >=(other) => index >= other.index;
-  // bool operator <=(other) => index <= other.index;
 }
 
 class LogicObj {
@@ -209,7 +203,6 @@ class LogicObj {
       constsString += '"${_consts[i]}"';
       if (i<_consts.length-1) constsString+=',';
     }
-    // TODO: what the hell are Id and UniverseKey
     return '{"Id":-1,"UniverseKey":"","Consts":[$constsString],"Predicates":["${type.toString().split('.').last}","${size.toString().split('.').last}"],"Tags":[$_x,$_y]}';
   }
 }

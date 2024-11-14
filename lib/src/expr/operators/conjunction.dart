@@ -19,4 +19,4 @@ class Conjunction extends Operator {
   Conjunction clone() => Conjunction();
   @override
   String toString() => '∧';
-  }
+}

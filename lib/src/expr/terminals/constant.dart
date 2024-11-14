@@ -20,5 +20,4 @@ class Constant extends Terminal {
   Constant clone() => Constant(_name);
   @override
   String toString() => _name;
-  }
-  
+}

@@ -23,5 +23,4 @@ class Variable extends Terminal {
   Variable clone() => Variable(_name);
   @override
   String toString() => _name;
-  }
-  
+}

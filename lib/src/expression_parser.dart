@@ -1,12 +1,12 @@
 import 'dart:collection';
 
-import 'expr/comma.dart';
 import 'expr/predicates/predicate.dart';
 import 'expr/functions/functions.dart';
 import 'expr/operators/operator.dart';
 import 'expr/terminals/terminal.dart';
 import 'expr/atomic_expression.dart';
 import 'expr/expression_tree.dart';
+import 'expr/comma.dart';
 import 'tokenizer.dart';
 
 
@@ -43,10 +43,6 @@ class ExpressionParser {
       print("${'  '*level}$message ['${_scanner.matchedText()}','${_scanner.remainder()}']");
     }
   }
-
-  //
-  // Here is the implementation of BNF rules as methods:
-  //
 
   /// parse expression
   /// <pre><code>expression ::= junction</code></pre> 

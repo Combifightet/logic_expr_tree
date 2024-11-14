@@ -1,75 +1,57 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'fol_world.dart';
 
 class FileManager {
-  String _dir = 'assets/';
+  FileManager();
 
-  FileManager(this._dir) {
-    _dir = _fixDir(_dir);
-  }
-
-  String _fixDir(String? dir) {
-    if (dir==null) {
-      dir=_dir;
+  FolWorld parseWorld(dynamic data) {
+    assert (data is String || data is List<int>);
+    late final dynamic jsonData;
+    if (data is String) {
+      jsonData = json.decode(data);
     } else {
-      dir = dir.replaceAll('\\', '/');
-      if (!dir.endsWith('/')) {
-        dir += '/';
-      }
+      String jsonString = Utf8Decoder().convert(data);
+      jsonData = json.decode(jsonString);
     }
-    return dir;
-  }
-
-  // TODO: check implementation
-  Map<String, ObjectType> objType = {
-    'Tet': ObjectType.Tet,
-    'Cube': ObjectType.Cube,
-    'Dodec': ObjectType.Dodec,
-  };
-  Map<String, ObjectSize> objSize = {
-    'Small': ObjectSize.Small,
-    'Medium': ObjectSize.Medium,
-    'Large': ObjectSize.Large,
-  };
-  Future<FolWorld> readWorld(String name, [String? dir]) async {
-    dir = _fixDir(dir);
-    name += name.endsWith('.wld')?'':'.wld';
-    final File file = File(dir+name);
-    FolWorld wld = FolWorld();
-    await file.readAsString().then((data) {
-      var jsonData = json.decode(data);
-      for (var obj in jsonData) {
-        List<String> consts = [];
-        for (String c in obj['Consts']) {
-          consts.add(c);
-        }
-        wld.createObj(
-          obj['Tags'][0],
-          obj['Tags'][1],
-          objType.entries.firstWhere((e)=>e.key==obj['Predicate'][0]).value,
-          objSize.entries.firstWhere((e)=>e.key==obj['Predicate'][1]).value,
-          consts
-        );
+    FolWorld world = FolWorld();
+    for(dynamic wld in jsonData) {
+      List<String> consts = [];
+      for (String c in wld['Consts']) {
+        consts.add(c);
       }
-    });
-    return wld; 
-  }
-  void writeWorld(FolWorld wld, [String? name, String? dir]) async {
-    name = name ?? '${DateTime.now()}.wld';
-    name += name.endsWith('.wld')?'':'.wld';
-    dir = _fixDir(dir);
-    final File file = File(dir+name);
-    await file.writeAsString(wld.toString());
+      world.createObj(
+        wld['Tags'][0],
+        wld['Tags'][1],
+        wld['Predicates'][0]=='Tet'
+          ? ObjectType.Tet
+          : wld['Predicates'][0]=='Cube'
+            ? ObjectType.Cube
+            : ObjectType.Dodec,
+        wld['Predicates'][1]=='Small'
+          ? ObjectSize.Small
+          : wld['Predicates'][1]=='Medium'
+            ? ObjectSize.Medium
+            : ObjectSize.Large,
+        consts
+      );
+    }
+    return world;
   }
 
-  // TODO: implement readScentence
-  List<String> readScentence(String name, [String? dir]) {
-    throw UnimplementedError();
-  }
-  // TODO: implement writeScentence
-  void writeScentence(List<String> sen, [String? name, String? dir]) {
-    throw UnimplementedError();
+  List<String> parseSentence(dynamic data) {
+    assert (data is String || data is List<int>);
+    late final dynamic jsonData;
+    if (data is String) {
+      jsonData = json.decode(data);
+    } else {
+      String jsonString = Utf8Decoder().convert(data);
+      jsonData = json.decode(jsonString);
+    }
+    List<String> sentences = [];
+    for (String sen in jsonData) {
+      sentences.add(sen);
+    }
+    return sentences;
   }
 }

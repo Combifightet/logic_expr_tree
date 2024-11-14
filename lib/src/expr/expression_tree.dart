@@ -1,10 +1,10 @@
+import 'predicates/predicate.dart';
+import 'functions/functions.dart';
+import 'operators/operator.dart';
+import 'terminals/terminal.dart';
 import 'atomic_expression.dart';
 import '../binary_tree.dart';
 import '../fol_world.dart';
-import 'functions/functions.dart';
-import 'operators/operator.dart';
-import 'predicates/predicate.dart';
-import 'terminals/terminal.dart';
 
 class ExpressionTree extends BinaryTree<AtomicExpression> {
 

@@ -19,5 +19,4 @@ class Negation extends Operator {
   Negation clone() => Negation();
   @override
   String toString() => '¬';
-  }
-  
+}

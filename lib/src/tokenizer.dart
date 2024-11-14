@@ -84,8 +84,6 @@ class Tokenizer {
   }
 
 
-
-
   main() {
     print('\nTokenizer test:\n');
     Tokenizer t = Tokenizer('⊥∨(x∀Cube(x))');
