@@ -117,10 +117,10 @@ class FolWorld {
     // a     |-> u2                       // sorted alphabetically
     // b     |-> u0
     // ---Predicates---
-    // Tet        |-> {u0}                // sorted alphabetically
-    // Cube       |-> {u1,u2}
-    // ---Functions---
-    // fm         |-> {u0 |->u0,          // sorted alphabetically
+    // Tet        |-> {u0}                // sorted (Tet -> Cube -> Dodec -> Small -> Medium -> Large -> Adjoins ->
+    // Cube       |-> {u1,u2}                        BackOf -> FrontOf -> Larger -> LeftOf -> RightOf -> SameCol ->
+    // ---Functions---                               SameRow -> SameShape -> SameSize -> Smaller -> Between)
+    // fm         |-> {u0 |->u0,          // sorted (fm -> bm -> rm -> lm)
     //                 u1 |->u1,
     //                 u2 |->u1}
     String result = '---Universe---\nUniverse |-> {';
